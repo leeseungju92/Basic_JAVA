@@ -46,6 +46,8 @@ public class ShopMain {
 			System.out.println("위의 값 실패");
 		}
 
-	}
+		int a=700/850*100;
+		System.out.println(a);
+	} 
 
 }
