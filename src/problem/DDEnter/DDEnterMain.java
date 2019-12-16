@@ -52,7 +52,7 @@ public class DDEnterMain {
 				System.out.print("▒▒번호>>");
 				sc.nextLine();
 				String ano = sc.nextLine();
-				
+
 				System.out.print("▒▒이름>>");
 				String aname = sc.nextLine();
 				System.out.print("▒▒분야>>");
@@ -64,7 +64,7 @@ public class DDEnterMain {
 				System.out.print("▒▒연봉>>");
 				int sal = sc.nextInt();
 
-				MemberDTO mDto = new MemberDTO(ano,aname, major, groupyn, groupnm, sal);
+				MemberDTO mDto = new MemberDTO(ano, aname, major, groupyn, groupnm, sal);
 				mDao.memUpdate(mDto);
 			} else if (code == 3) {
 				System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
@@ -74,14 +74,21 @@ public class DDEnterMain {
 				String ano = sc.nextLine();
 				mDao.memDelete(ano);
 			} else if (code == 4) {
+				System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
+				System.out.println("▒▒ 회사에 소속된 아티스트 명단입니다.");
 				mDao.memSelect();
+
 			} else if (code == 5) {
-				mDao.memSearch();
+				System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
+				System.out.println("▒▒ 검색할 아티스트의 이름을 입력하시오.");
+				sc.nextLine();
+				String aname = sc.nextLine();
+				mDao.memSearch("%"+aname+"%");
 			} else if (code == 6) {
 				System.out.println("<프로그램종료>");
 				System.exit(0);
 			}
-			
+
 		}
 	}
 
