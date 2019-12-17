@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class DotoryBookDAO {
+
 	Connection conn;
 	PreparedStatement pstmt;
 	ArrayList<DotoryBookDTO> list = new ArrayList<>();
@@ -17,7 +18,7 @@ public class DotoryBookDAO {
 			conn = DBManager.getConnection();
 			String sql = "INSERT INTO tbl_book(bno,bname,price,company,writer) " + "VALUES (seq_book.NEXTVAL,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
-			
+
 			pstmt.setString(1, bDto.getBname());
 			pstmt.setInt(2, bDto.getPrice());
 			pstmt.setString(3, bDto.getCompany());
@@ -43,14 +44,10 @@ public class DotoryBookDAO {
 	public void update(DotoryBookDTO bDto) {
 		try {
 			conn = DBManager.getConnection();
-			String sql = "UPDATE tbl_book "
-					+ "SET bname = ?,"
-					+ " price = ?,"
-					+ "company = ?,"
-					+ "writer = ? "
-					+ "WHERE bno ="+bDto.getBno();
+			String sql = "UPDATE tbl_book " + "SET bname = ?," + " price = ?," + "company = ?," + "writer = ? "
+					+ "WHERE bno =" + bDto.getBno();
 			pstmt = conn.prepareStatement(sql);
-			
+
 			pstmt.setString(1, bDto.getBname());
 			pstmt.setInt(2, bDto.getPrice());
 			pstmt.setString(3, bDto.getCompany());
@@ -75,15 +72,15 @@ public class DotoryBookDAO {
 
 	public void delete(String bno) {
 		try {
-			conn =DBManager.getConnection();
+			conn = DBManager.getConnection();
 			String sql = "DELETE FROM tbl_book WHERE bno = ?";
-			pstmt=conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, bno);
-			int result=pstmt.executeUpdate();
-			if(result>0) {
+			int result = pstmt.executeUpdate();
+			if (result > 0) {
 				System.out.println("삭제성공");
 			}
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -107,9 +104,10 @@ public class DotoryBookDAO {
 
 				DotoryBookDTO dbDto = new DotoryBookDTO(bno, bname, price, company, writer, regdate);
 				list.add(dbDto);
-				
-			}for (DotoryBookDTO line : list) {
-				System.out.println(line.toString());
+
+			}
+			for (DotoryBookDTO dotoryBookDTO : list) {
+				System.out.println(dotoryBookDTO.toString());
 			}
 
 		} catch (Exception e) {
@@ -122,7 +120,7 @@ public class DotoryBookDAO {
 			conn = DBManager.getConnection();
 			String sql = "SELECT * FROM tbl_book WHERE bname LIKE ?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "%"+bname+"%");
+			pstmt.setString(1, "%" + bname + "%");
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -135,8 +133,9 @@ public class DotoryBookDAO {
 
 				DotoryBookDTO dbDto = new DotoryBookDTO(bno, bname, price, company, writer, regdate);
 				list.add(dbDto);
-				
-			}for (DotoryBookDTO line : list) {
+
+			}
+			for (DotoryBookDTO line : list) {
 				System.out.println(line.toString());
 			}
 

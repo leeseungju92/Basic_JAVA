@@ -9,8 +9,10 @@ public class DotoryBookDTO {
 	private String company;
 	private String writer;
 	private Date regdate;
-	
-	public DotoryBookDTO() {}
+
+	public DotoryBookDTO() {
+	}
+
 	public DotoryBookDTO(String bname, int price, String company, String writer) {
 		super();
 		this.bname = bname;
@@ -18,6 +20,7 @@ public class DotoryBookDTO {
 		this.company = company;
 		this.writer = writer;
 	}
+
 	public DotoryBookDTO(String bno, String bname, int price, String company, String writer, Date regdate) {
 		super();
 		this.bno = bno;
@@ -81,6 +84,5 @@ public class DotoryBookDTO {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
-	
 
 }
