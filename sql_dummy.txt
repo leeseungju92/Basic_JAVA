@@ -440,3 +440,26 @@ WHERE e.deptno = d.deptno
 GROUP BY dname
 HAVING COUNT (e.empno)>=5
 ORDER BY dname;
+
+
+--view 테이블
+--  1. 하나의 가상 테이블
+--  2. 실제 데이터가 저장되는 것은 아니지만 뷰를 통해 데이터를 관리할 수 있음.
+--  3. 복잡한 QUERY를 통해 얻을 수 있는 결과를 간단한 Query로 얻을 수 있음
+--  4. 한 개의 뷰로 여러 테이블에 대한 데이터를 검색 할 수 있음.
+--  5. View 설정값 FORCE : 기본테이블 유무에 관계없이 view 를 생성
+--     WITH CHECK OPTION : view에 의해 액세스 될 수 있는 행만이 입력되거나 변경될 수 있음
+--     WITH READ ONLY SELECT만 가능한 VIEW 생성
+
+--CREATE [OR REPLACE] [FORCE|NOFORCE] VIEW view_name
+--AS subquery
+--[WITH CHECK OPTION] [CONSTRAINT 제약조건]
+--[WITH READ ONLY]
+
+CREATE OR REPLACE VIEW view_query
+AS
+    SELECT e.empno, e.ename, d.dname, d.loc
+    FROM emp e, dept d
+    WHERE e.deptno = d.deptno;   
+
+SELECT * FROM view_query;
